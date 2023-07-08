@@ -1,0 +1,25 @@
+.btn {
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn.purple {
+    background-color: #DE57F9;
+}
+
+.btn.purple:hover {
+    background-color: #af30c8;
+}
+
+.btn.red {
+    background-color: #DC3545;
+}
+  
+.btn.red:hover {
+    background-color: #bc1828;
+}

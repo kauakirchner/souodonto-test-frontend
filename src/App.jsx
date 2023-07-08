@@ -1,8 +1,10 @@
+import { Table } from "./components/itens-table/Table"
+
 function App() {
   return (
-    <>
-      <h1>Hello World</h1>
-    </>
+    <div className="container">
+        <Table />
+    </div>
   )
 }
 
