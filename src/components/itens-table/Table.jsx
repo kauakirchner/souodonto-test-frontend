@@ -1,12 +1,13 @@
 import { useState } from "react"
 import { Button } from "../button/Button"
+import { FormAddITem } from "../forms/modals/FormAddItem"
 import "./table.css"
 
 export const Table = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isFormModalOpen, setIsFormModalOpen] = useState(false);
 
-    const handleOpenModalAddItem = () => {
-        console.log("do something")
+    const handleToggleFormAddITem = () => {
+        setIsFormModalOpen(prevState => !prevState);
     }
     return (
         <div className="table-container">
@@ -19,7 +20,10 @@ export const Table = () => {
                     <th>Quantidade</th>
                     <th>Obrigatório</th>
                     <th>
-                        <Button onClick={handleOpenModalAddItem} /> 
+                        <Button 
+                            onClick={handleToggleFormAddITem}
+                            text="Adicionar"
+                        /> 
                     </th>
                 </tr>
                 </thead>
@@ -33,6 +37,10 @@ export const Table = () => {
                 </tr>
                 </tbody>
         </table>
+        <FormAddITem 
+            showForm={isFormModalOpen} 
+            onClick={handleToggleFormAddITem}
+        />
       </div>
     )
 }

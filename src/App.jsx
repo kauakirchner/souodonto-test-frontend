@@ -1,4 +1,5 @@
 import { Table } from "./components/itens-table/Table"
+import "./main.css"
 
 function App() {
   return (

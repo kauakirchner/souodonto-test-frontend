@@ -1,8 +1,22 @@
 import "./button.css";
 
-export const Button = ({ onClick, type }) => {
-    const buttonType = type === "error" ? "red" : "purple";
+export const Button = ({ onClick, color, type, text, className }) => {
+    const buttonColor = color === "error" ? "red" : "purple";
+    const buttonType = type ? type : "button"
+    const buttonClassName = className ? className : "";
+
+    const handleClick = () => {
+        if (typeof onClick === "function") {
+            onClick();
+        }
+    }
     return (
-        <button className={`btn ${buttonType}`} onClick={onClick}>Adicionar</button>
+        <button 
+            className={`btn ${buttonColor} ${buttonClassName}`} 
+            type={buttonType}  
+            onClick={handleClick}
+        >
+            { text }
+        </button>
     )
 }
