@@ -1,11 +1,13 @@
-import { Table } from "./components/itens-table/Table"
+import { Navbar } from "./components/header/navbar/Navbar"
+import { Table } from "./components/products-table/Table"
 import "./main.css"
 
 function App() {
   return (
-    <div className="container">
+    <>
+      <Navbar />
         <Table />
-    </div>
+    </>
   )
 }
 

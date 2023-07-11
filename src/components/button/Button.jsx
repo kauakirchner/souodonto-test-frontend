@@ -1,9 +1,9 @@
 import "./button.css";
 
-export const Button = ({ onClick, color, type, text, className }) => {
+export const Button = ({ onClick, color, type, text, styleClasses }) => {
     const buttonColor = color === "error" ? "red" : "purple";
     const buttonType = type ? type : "button"
-    const buttonClassName = className ? className : "";
+    const buttonClassName = styleClasses ? styleClasses : "";
 
     const handleClick = () => {
         if (typeof onClick === "function") {

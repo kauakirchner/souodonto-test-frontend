@@ -9,11 +9,12 @@
 }
 
 .btn.purple {
-    background-color: #DE57F9;
+    background-color: #af30c8;
 }
 
 .btn.purple:hover {
-    background-color: #af30c8;
+    background-color: #a42abd;
+    transform: scale(1.05);
 }
 
 .btn.red {
@@ -22,4 +23,5 @@
   
 .btn.red:hover {
     background-color: #bc1828;
+    transform: scale(1.15);
 }

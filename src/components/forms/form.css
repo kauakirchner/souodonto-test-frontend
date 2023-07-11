@@ -64,7 +64,7 @@
 .form-group input[type="email"]:focus,
 .form-group input[type="file"]:focus,
 .form-group input[type="checkbox"]:focus {
-  box-shadow: 0 0 5px rgba(222, 87, 249, 0.3);
+  box-shadow: 0 0 5px #8B61F2;
 }
 
 .form-group-checkbox {
@@ -96,9 +96,9 @@
     cursor: pointer;
     border-radius: 5px;
     font-weight: bold;
-    background-color: #007bff;
+    background-color: #8B61F2;
 }
 
-.close-btn {
-    order: 2;
+.close-btn-container {
+    text-align: right;
 }
