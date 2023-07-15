@@ -1,0 +1,27 @@
+.btn {
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn.purple {
+    background-color: #af30c8;
+}
+
+.btn.purple:hover {
+    background-color: #a42abd;
+    transform: scale(1.05);
+}
+
+.btn.red {
+    background-color: #DC3545;
+}
+  
+.btn.red:hover {
+    background-color: #bc1828;
+    transform: scale(1.15);
+}

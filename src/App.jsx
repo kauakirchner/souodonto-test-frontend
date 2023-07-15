@@ -1,7 +1,12 @@
+import { Navbar } from "./components/header/navbar/Navbar"
+import { Table } from "./components/products-table/Table"
+import "./main.css"
+
 function App() {
   return (
     <>
-      <h1>Hello World</h1>
+      <Navbar />
+        <Table />
     </>
   )
 }
