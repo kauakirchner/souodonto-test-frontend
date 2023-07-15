@@ -4,7 +4,7 @@ import { createProduct } from "../../../services/create-product";
 import { Notification } from "../../notification/Notification";
 import '../form.css';
 
-export const FormAddProduct = ({ showForm, onClick }) => {
+export const FormAddProduct = ({ showForm, onClick, state, setState }) => {
   const [productName, setProductName] = useState('');
   const [productBrand, setProductBrand] = useState('');
   const [productQuantity, setProductQuantity] = useState('');
@@ -25,6 +25,7 @@ export const FormAddProduct = ({ showForm, onClick }) => {
     }
 
     await createProduct(formData);
+    setState([...state, formData]);
     handleShowNotification();
     clearForm();
   }

@@ -1,7 +1,5 @@
-import "./navbar.css";
-
 import Logo from "../../../assets/logo.svg"
-
+import "./navbar.css";
 
 export const Navbar = () => {
     return (
@@ -17,7 +15,7 @@ export const Navbar = () => {
                 Cadastro de Materiais
             </div>
             <div className="navbar-content">
-                <span>Olá, Kauã</span>
+                <span>Olá :)</span>
             </div>
         </nav>
     );

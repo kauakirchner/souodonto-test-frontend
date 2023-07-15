@@ -45,5 +45,5 @@
 
 .product-image-small:hover {
   cursor: pointer;
-  transform: scale(1.25);
+  transform: scale(5.25);
 }

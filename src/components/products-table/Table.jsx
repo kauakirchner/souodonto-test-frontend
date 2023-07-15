@@ -1,21 +1,14 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../button/Button";
 import { FormAddProduct } from "../forms/modals/FormAddProduct";
 import { getProducts } from "../../services/get-product";
 import { Notification } from "../notification/Notification";
 import "./table.css"
-import { ExpandedProductImage } from "../expanded-product-image/ExpandedProductImage";
 
 export const Table = () => {
     const [showForm, setshowForm] = useState(false);
     const [allProducts, setAllProducts] = useState([]);
     const [showNotification, setShowNotification] = useState(false);
-    const [showExpandedImage, setShowExpandedImage] = useState(false);
-
-    const handleToggleExpandedImage = useCallback((value) => {
-        setShowExpandedImage(value);
-    }, []);
-
 
     const handleToggleForm = () => {
         setshowForm(prevState => !prevState);
@@ -37,7 +30,7 @@ export const Table = () => {
         .catch(() => {
             handleShowNotification();
         })
-    }, [allProducts])
+    }, [])
 
     return (
         <div className="table-container">
@@ -58,25 +51,19 @@ export const Table = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {allProducts.map((product, index) => (
+                    {allProducts.map((item, index) => (
                         <tr key={index}>
                             <td>
                                 <img 
-                                    className="product-image-small" 
-                                    src={product.productImage} 
-                                    onClick={() => handleToggleExpandedImage(true)}
+                                    className="product-image-small"
+                                    src={item.productImage} 
                                     alt=""
                                 />
-                                <ExpandedProductImage 
-                                    showImage={showExpandedImage}
-                                    image={product.productImage}
-                                    onClick={() => handleToggleExpandedImage(false)}
-                                />
                             </td>
-                            <td>{ product.productName }</td>
-                            <td>{ product.productBrand }</td>
-                            <td>{ product.productQuantity }</td>
-                            <td>{ product.isProductRequired ? "Sim" : "Não" }</td>
+                            <td>{ item.productName }</td>
+                            <td>{ item.productBrand }</td>
+                            <td>{ item.productQuantity }</td>
+                            <td>{ item.isProductRequired ? "Sim" : "Não" }</td>
                         </tr>
                     ))}
                 </tbody>
@@ -84,6 +71,8 @@ export const Table = () => {
             <FormAddProduct 
                 showForm={showForm} 
                 onClick={handleToggleForm}
+                state={allProducts}
+                setState={setAllProducts}
             />
             { showNotification && (
                 <Notification 
