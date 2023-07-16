@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://souodonto-test-backend.vercel.app";
 
 export const createProduct = async (payload) => {
     try {
