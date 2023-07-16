@@ -11,12 +11,13 @@ export const Navbar = () => {
                     alt="Logo"
                 />
             </div>
-            <div className="navbar-title">
-                Cadastro de Materiais
-            </div>
             <div className="navbar-content">
+                <div className="navbar-title">
+                    Cadastro de Materiais
+                </div>
                 <span>Olá :)</span>
             </div>
-        </nav>
-    );
+      </nav>
+      
+    )
 }
