@@ -1,6 +1,6 @@
 import { Button } from "../../button/Button";
 import { useState } from 'react';
-import { createProduct } from "../../../services/create-product";
+import { ProductService } from "../../../services/products";
 import { Notification } from "../../notification/Notification";
 import '../form.css';
 
@@ -24,7 +24,7 @@ export const FormAddProduct = ({ showForm, onClick, state, setState }) => {
       "productImage": productImage
     }
 
-    await createProduct(formData);
+    await ProductService.create(formData);
     setState([...state, formData]);
     handleShowNotification();
     clearForm();

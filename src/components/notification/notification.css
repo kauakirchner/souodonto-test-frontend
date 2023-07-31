@@ -23,6 +23,11 @@
     background-color: #ff6666;
     color: #ffffff;
   }
+
+  .notification.warning {
+    background-color: rgb(194, 194, 21);
+    color: #ffffff;
+  }
   
   .message {
     flex-grow: 1;

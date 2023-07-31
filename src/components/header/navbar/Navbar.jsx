@@ -1,7 +1,13 @@
+import { useState } from "react";
+import { LoginForm } from "../../forms/login/LoginForm";
 import Logo from "../../../assets/logo.svg"
 import "./navbar.css";
 
 export const Navbar = () => {
+    const [showForm, setShowForm] = useState(false);
+    const handleToggleLoginForm = () => {
+        setShowForm(prevState => !prevState);
+    }
     return (
         <nav className="navbar">
             <div className="navbar-logo">
@@ -15,9 +21,13 @@ export const Navbar = () => {
                 <div className="navbar-title">
                     Cadastro de Materiais
                 </div>
-                <span>Olá :)</span>
+                <span style={{ cursor: "pointer" }} onClick={handleToggleLoginForm}>Não possui uma conta? Cadastre-se</span>
             </div>
+            <LoginForm 
+                showForm={showForm} 
+                onClick={handleToggleLoginForm}
+            />
       </nav>
-      
+       
     )
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "../button/Button";
-import { FormAddProduct } from "../forms/modals/FormAddProduct";
-import { getProducts } from "../../services/get-product";
+import { FormAddProduct } from "../forms/product/FormAddProduct";
+import { ProductService } from "../../services/products";
 import { Notification } from "../notification/Notification";
 import "./table.css"
 
@@ -23,7 +23,7 @@ export const Table = () => {
     }
 
     useEffect(() => {
-       getProducts()
+        ProductService.getProducts()
         .then((response) => {
             setAllProducts(response)
         })
