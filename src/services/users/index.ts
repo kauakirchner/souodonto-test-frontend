@@ -1,7 +1,8 @@
+import { User } from "../../utils/types/types";
 const BASE_URL = import.meta.env.BACKEND_BASE_URL
 
 export const UserService = {
-    async create(payload) {
+    async create(payload: User): Promise<User | undefined>{
         try {
             const response = await fetch(`${BASE_URL}/users/create`, {
                 method: "POST",
@@ -11,14 +12,21 @@ export const UserService = {
                 },
                 body: JSON.stringify(payload)
             })
-            return response;
+            if (response.ok) {
+                const data = await response.json();
+                return data;
+            }
+
+            console.error("Request failed with status: ", response.status);
+            return undefined;
         }
         catch(error) {
             console.log({ error });
+            return undefined
         }
     },
 
-    async getUsers() {
+    async getUsers(): Promise<User[] | undefined> {
         try {
             const response = await fetch(`${BASE_URL}/users`, {
                 method: "GET",
@@ -33,6 +41,7 @@ export const UserService = {
         }
         catch(error) {
             console.log({ error });
+            return undefined;
         }
     }
 }

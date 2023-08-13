@@ -1,7 +1,8 @@
+import { Product } from "../../utils/types/types";
 const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 export const ProductService = {
-    async create(payload) {
+    async create(payload: Product): Promise<Product | undefined> {
         try {
             const response = await fetch(`${BASE_URL}/products/create`, {
                 method: "POST",
@@ -11,20 +12,27 @@ export const ProductService = {
                 },
                 body: JSON.stringify(payload)
             })
-            return response;
+            if (response.ok) {
+                const data = await response.json();
+                return data;
+            }
+
+            console.error("Request failed with status: ", response.status);
+            return undefined;
         }
         catch(error) {
-            console.log({ error });
+            console.error({ error });
+            return undefined;
         }
     },
 
-    async getProducts() {
+    async getProducts(): Promise<Product[] | undefined> {
         try {
             const response = await fetch(`${BASE_URL}/products`, {
                 method: "GET",
                 headers: {
-                    "Content-Type": "Application/json",
-                    "Access-Control-Allow-Origin": "Bearer *"
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*"
                 }
             })
     
@@ -33,6 +41,7 @@ export const ProductService = {
         }
         catch(error) {
             console.log({ error });
+            return undefined;
         }
     }
 }

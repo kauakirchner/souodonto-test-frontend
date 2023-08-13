@@ -1,23 +1,29 @@
-import { useState } from 'react';
-import { UserService } from "../../../services/users"
+import { FormEvent, useState } from 'react';
+import { UserService } from "../../../services/users";
+import { User } from '../../../utils/types/types';
 import { Button } from "../../button/Button";
 import { Notification } from "../../notification/Notification";
 import '../form.css';
 
-export const LoginForm = ({ showForm, onClick }) => {
-  const [userName, setUserName] = useState("");
-  const [userPassword, setUserPassword] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [userConfirmedPassword, setUserConfirmedPassword] = useState("");
-  const [showNotification, setShowNotification] = useState(false);
+interface LoginFormProps {
+  showForm: boolean;
+  onClick: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void);
+}
 
-  const handleSubmit = async (event) => {
+export const LoginForm = ({ showForm, onClick }: LoginFormProps) => {
+  const [userName, setUserName] = useState<string>("");
+  const [userPassword, setUserPassword] = useState<string>("");
+  const [userEmail, setUserEmail] = useState<string>("");
+  const [userConfirmedPassword, setUserConfirmedPassword] = useState<string>("");
+  const [showNotification, setShowNotification] = useState<boolean>(false);
+
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
    
-    const payload = {
-      "userName": productName,
-      "userEmail": productBrand,
-      "userPassword": productQuantity,
+    const payload: User = {
+      "userName": userName,
+      "userEmail": userEmail,
+      "userPassword": userPassword,
     }
 
     await UserService.create(payload);
@@ -25,7 +31,7 @@ export const LoginForm = ({ showForm, onClick }) => {
     clearForm();
   }
 
-  const handleShowNotification = () => {
+  const handleShowNotification = (): void => {
     setShowNotification(true);
 
     setTimeout(() => {
@@ -33,13 +39,12 @@ export const LoginForm = ({ showForm, onClick }) => {
     }, 3000);
   }
 
-  const clearForm = () => {
-    setUserName('');
-    setUserPassword('');
-    setUserEmail('');
-    setUserConfirmedPassword(false);
+  const clearForm = (): void => {
+    setUserName("");
+    setUserPassword("");
+    setUserEmail("");
+    setUserConfirmedPassword("");
   }
-
  
   return (
     <>

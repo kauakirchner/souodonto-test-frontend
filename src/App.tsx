@@ -4,10 +4,10 @@ import "./main.css"
 
 function App() {
   return (
-    <>
+    <div>
       <Navbar />
-        <Table />
-    </>
+      <Table />
+    </div>
   )
 }
 

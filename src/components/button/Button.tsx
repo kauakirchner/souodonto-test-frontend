@@ -1,13 +1,24 @@
+import React from "react";
 import "./button.css";
 
-export const Button = ({ onClick, color, type, text, styleClasses }) => {
+type ButtonType = "submit" | "button"
+
+interface ButtonProps {
+    color?: string;
+    type?: ButtonType;
+    text?: string;
+    styleClasses?: string;
+    onClick?: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void);
+}
+
+export const Button = ({ onClick, color, type, text, styleClasses }: ButtonProps) => {
     const buttonColor = color === "error" ? "red" : "purple";
     const buttonType = type ? type : "button"
     const buttonClassName = styleClasses ? styleClasses : "";
 
-    const handleClick = () => {
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         if (typeof onClick === "function") {
-            onClick();
+            onClick(event);
         }
     }
     return (

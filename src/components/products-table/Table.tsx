@@ -3,18 +3,19 @@ import { Button } from "../button/Button";
 import { FormAddProduct } from "../forms/product/FormAddProduct";
 import { ProductService } from "../../services/products";
 import { Notification } from "../notification/Notification";
+import { Product } from "../../utils/types/types";
 import "./table.css"
 
 export const Table = () => {
-    const [showForm, setshowForm] = useState(false);
-    const [allProducts, setAllProducts] = useState([]);
-    const [showNotification, setShowNotification] = useState(false);
+    const [showForm, setshowForm] = useState<boolean>(false);
+    const [allProducts, setAllProducts] = useState<Product[]>([]);
+    const [showNotification, setShowNotification] = useState<boolean>(false);
 
-    const handleToggleForm = () => {
+    const handleToggleForm = (): void => {
         setshowForm(prevState => !prevState);
     }
 
-    const handleShowNotification = () => {
+    const handleShowNotification = (): void => {
         setShowNotification(true);
     
         setTimeout(() => {
@@ -50,23 +51,27 @@ export const Table = () => {
                         </th>
                     </tr>
                 </thead>
-                <tbody>
-                    {allProducts.map((item, index) => (
-                        <tr key={index}>
-                            <td>
-                                <img 
-                                    className="product-image-small"
-                                    src={item.productImage} 
-                                    alt=""
-                                />
-                            </td>
-                            <td>{ item.productName }</td>
-                            <td>{ item.productBrand }</td>
-                            <td>{ item.productQuantity }</td>
-                            <td>{ item.isProductRequired ? "Sim" : "Não" }</td>
-                        </tr>
-                    ))}
-                </tbody>
+                { allProducts ? (
+                    <tbody>
+                        {allProducts?.map((item, index) => (
+                            <tr key={index}>
+                                <td>
+                                    <img 
+                                        className="product-image-small"
+                                        src={item.productImage} 
+                                        alt=""
+                                    />
+                                </td>
+                                <td>{ item.productName }</td>
+                                <td>{ item.productBrand }</td>
+                                <td>{ item.productQuantity }</td>
+                                <td>{ item.isProductRequired ? "Sim" : "Não" }</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                ) : (
+                    <span>Nenhum Item Encontrado</span>
+                )}
             </table>
             <FormAddProduct 
                 showForm={showForm} 

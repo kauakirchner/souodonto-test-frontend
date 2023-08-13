@@ -1,18 +1,23 @@
 import { useState, useEffect } from 'react';
 import './notification.css';
 
-export const Notification = ({ message, type, duration }) => {
-  const [visible, setVisible] = useState(true);
+type NotificationProps = {
+  message: string;
+  type: string;
+  duration: number;
+}
+
+export const Notification = ({ message, type, duration }: NotificationProps) => {
+  const [visible, setVisible] = useState<boolean>(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setVisible(false);
     }, duration);
-
     return () => clearTimeout(timer);
   }, [duration]);
 
-  const handleClose = () => {
+  const handleClose = (): void => {
     setVisible(false);
   };
 

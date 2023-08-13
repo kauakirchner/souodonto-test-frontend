@@ -4,8 +4,8 @@ import Logo from "../../../assets/logo.svg"
 import "./navbar.css";
 
 export const Navbar = () => {
-    const [showForm, setShowForm] = useState(false);
-    const handleToggleLoginForm = () => {
+    const [showForm, setShowForm] = useState<boolean>(false);
+    const handleToggleLoginForm = (): void => {
         setShowForm(prevState => !prevState);
     }
     return (

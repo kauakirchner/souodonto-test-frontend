@@ -1,63 +1,69 @@
-import { Button } from "../../button/Button";
-import { useState } from 'react';
+import { FormEvent, SetStateAction, useState, Dispatch, ChangeEvent } from 'react';
 import { ProductService } from "../../../services/products";
 import { Notification } from "../../notification/Notification";
+import { Product } from '../../../utils/types/types';
+import { Button } from "../../button/Button";
 import '../form.css';
 
-export const FormAddProduct = ({ showForm, onClick, state, setState }) => {
-  const [productName, setProductName] = useState('');
-  const [productBrand, setProductBrand] = useState('');
-  const [productQuantity, setProductQuantity] = useState('');
-  const [isProductRequired, setIsProductRequired] = useState(false);
-  const [productImage, setProductImage] = useState('');
-  const [showNotification, setShowNotification] = useState(false);
+interface FormAddProductProps {
+  showForm: boolean;
+  onClick: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void);
+  setState: Dispatch<SetStateAction<Product[]>>;
+  state: Product
+}
 
 
-  const handleSubmit = async (event) => {
+export const FormAddProduct = ({ showForm, onClick, state, setState }: FormAddProductProps) => {
+  const [productName, setProductName] = useState<string>("");
+  const [productBrand, setProductBrand] = useState<string>("");
+  const [productQuantity, setProductQuantity] = useState<string>("");
+  const [isProductRequired, setIsProductRequired] = useState<boolean>(false);
+  const [productImage, setProductImage] = useState<string>("");
+  const [showNotification, setShowNotification] = useState<boolean>(false);
+
+
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    
-    const formData = {
+    const formData: Product = {
       "productName": productName,
       "productBrand": productBrand,
       "productQuantity": productQuantity,
       "isProductRequired": isProductRequired,
       "productImage": productImage
     }
-
     await ProductService.create(formData);
-    setState([...state, formData]);
+    setState((prevState) => [...prevState, formData]);
     handleShowNotification();
     clearForm();
   }
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    const file = event.target.files?.[0];
     const reader = new FileReader();
-    reader.onload = (event) => setProductImage(event.target.result);
-    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      if (event.target?.result && typeof event.target?.result === "string") {
+        setProductImage(event.target.result)
+        reader.readAsDataURL(file as Blob);
+      }
+    }
   }
 
-  const handleShowNotification = () => {
+  const handleShowNotification = (): void => {
     setShowNotification(true);
-
     setTimeout(() => {
       setShowNotification(false);
     }, 3000);
   }
 
-
-
-  const clearForm = () => {
+  const clearForm = (): void => {
     setProductName('');
     setProductBrand('');
     setProductQuantity('');
     setIsProductRequired(false);
     setProductImage('');
   }
-
  
   return (
-   
     <>
       {showForm && (
         <div className="form-container">
